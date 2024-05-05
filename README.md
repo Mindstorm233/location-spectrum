@@ -18,7 +18,7 @@
    ```bash
     conda create --name plutoSDR python=3.10
     conda activate plutoSDR
-    conda install flask flask_cors numpy matplotlib jupyter
+    conda install flask flask_cors numpy matplotlib jupyter scipy
     pip install pyadi-iio
    ```
 

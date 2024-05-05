@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Geolocation Example</title>
+    <title>Operation Menu</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
 
@@ -12,7 +13,16 @@
     <p id="latitude"></p>
     <p id="longitude"></p>
     <p id="locationInfo"></p>
-    <button onclick="sendLocation()">Send Location</button>
+
+    <form id="dataForm">
+        <label for="startFrequency">Start Frequency:</label>
+        <input type="text" id="startFrequency" name="startFrequency">
+        <br>
+        <label for="endFrequency">End Frequency:</label>
+        <input type="text" id="endFrequency" name="endFrequency">
+    </form>
+
+    <button onclick="sendLocation()">Send Location and record psd</button>
 </body>
 
 </html>
