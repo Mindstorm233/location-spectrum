@@ -3,26 +3,33 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Operation Menu</title>
+    <title>经纬度坐标频谱记录系统</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
 
 <body onload="getLocation()">
-    <h1>Current Location</h1>
+    <h1>请设定设备的经纬度和起止频率点</h1>
     <p id="latitude"></p>
     <p id="longitude"></p>
     <p id="locationInfo"></p>
 
     <form id="dataForm">
-        <label for="startFrequency">Start Frequency:</label>
+        <label for="latitudeInput">纬度:</label>
+        <input type="text" id="latitudeInput" name="latitude">
+        <br>
+        <label for="longitudeInput">经度:</label>
+        <input type="text" id="longitudeInput" name="longitude">
+        <br>
+
+        <label for="startFrequency">起始频率（请使用科学计数法，如950e6，表示950MHz）:</label>
         <input type="text" id="startFrequency" name="startFrequency">
         <br>
-        <label for="endFrequency">End Frequency:</label>
+        <label for="endFrequency">结束频率（请使用科学计数法，如950e6，表示950MHz）:</label>
         <input type="text" id="endFrequency" name="endFrequency">
     </form>
 
-    <button onclick="sendLocation()">Send Location and record psd</button>
+    <button onclick="sendLocation()">保存设定并记录</button>
 </body>
 
 </html>

@@ -6,8 +6,11 @@ function getLocation() {
         navigator.geolocation.getCurrentPosition(function (position) {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
-            document.getElementById("latitude").textContent = "Latitude: " + latitude;
-            document.getElementById("longitude").textContent = "Longitude: " + longitude;
+            document.getElementById("latitude").textContent = "基于此设备的纬度: " + latitude;
+            document.getElementById("longitude").textContent = "基于此设备的经度: " + longitude;
+            // 自动填充表单中的经纬度输入框
+            document.getElementById("latitudeInput").value = latitude;
+            document.getElementById("longitudeInput").value = longitude;
         }, function (error) {
             document.getElementById("locationInfo").textContent = "Error: " + error.message;
         });
@@ -17,11 +20,20 @@ function getLocation() {
 }
 
 function sendLocation() {
-    if (latitude === 0 && longitude === 0) {
+    // 从输入框读取经纬度，而非全局变量
+    const latitude = document.getElementById("latitudeInput").value;
+    const longitude = document.getElementById("longitudeInput").value;
+
+    if (!latitude || !longitude) {
         alert("Location not available or not yet retrieved. Please make sure location is enabled and try again.");
         return;
     }
-    const data = { latitude: latitude, longitude: longitude, start: document.getElementById("startFrequency").value, end: document.getElementById("endFrequency").value };
+    const data = {
+        latitude: latitude,
+        longitude: longitude,
+        start: document.getElementById("startFrequency").value,
+        end: document.getElementById("endFrequency").value
+    };
     fetch('http://127.0.0.1:5000/location', {
         method: 'POST',
         headers: {

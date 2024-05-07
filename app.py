@@ -58,7 +58,7 @@ def receive_location():
     start_frequency = float(data['start'])
     end_frequency = float(data['end'])
     try:
-        for i in range(1, 31):
+        for i in range(1, 11):
             receive_and_plot_power_spectrum(start_frequency, end_frequency, data['latitude'], data['longitude'])
     except ValueError as e:
         return 'Input invalid. ' + str(e)
